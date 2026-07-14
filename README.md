@@ -1,0 +1,2 @@
+# agent_creater_skill
+一些al智能体小说创作的skill
