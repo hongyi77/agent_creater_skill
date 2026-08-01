@@ -1,0 +1,35 @@
+{
+  "skill_name": "plugin-recovery",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我升级了 Claude Code 之后发现插件全部丢了，/plugin list 显示 No plugins installed。之前装过 chrome-devtools-mcp、playwright、github、superpowers、frontend-design 这几个，现在 settings.json 里还剩一些 enabledPlugins 的引用。帮我看看到底怎么回事。",
+      "expected_output": "检查网络和当前插件状态，从 settings.json 推断已安装插件，恢复 marketplace 配置，重新安装丢失的插件，清理 settings.json 中的残留引用",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "claude plugin marketplace list 显示 No marketplaces configured，但我之前明明加过 claude-plugins-official 的，升级后就没了。怎么恢复？",
+      "expected_output": "重新添加 marketplace anthropics/claude-plugins-official，验证成功后提示用户继续安装插件",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我试 claude plugin marketplace add claude-plugins-official 但报错 Repository not found，怎么回事？",
+      "expected_output": "识别出用户用了错误的市场名称，正确的命令是 claude plugin marketplace add anthropics/claude-plugins-official",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我的插件全没了，而且现在 GitHub 连不上，curl https://github.com 返回 000 错误。有什么办法恢复吗？",
+      "expected_output": "先诊断网络不通是 GFW 阻断，建议用户启动代理或切换网络，如果有代理环境可检查 HTTPS_PROXY 环境变量设置",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "升级后 /plugin 命令报错说 × Failed to load，查看了下 installed_plugins.json 里面只剩 {\"version\":2,\"plugins\":{}} 了，但我之前安装过一堆插件，这还有救吗？",
+      "expected_output": "读取 settings.json 的 enabledPlugins 推断之前安装过的插件列表，检查 file-history 中是否有备份，如果没有备份则从 enabledPlugins 恢复安装",
+      "files": []
+    }
+  ]
+}
